@@ -11,8 +11,8 @@ let package = Package(
             name: "arti-ios",
             targets: ["arti-ios"]),
         .library(
-            name: "arti_rest",
-            targets: ["arti_rest"]),
+            name: "arti-rest",
+            targets: ["arti-rest"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -23,13 +23,13 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "arti-ios",
-            dependencies: ["arti_rest"]),
+            dependencies: ["arti-rest"]),
         .testTarget(
             name: "arti-iosTests",
             dependencies: ["arti-ios"]),
         .binaryTarget(
-            name: "arti_rest",
-            url: "https://github.com/c4dt/arti-rest/releases/download/0.0.2/arti-rest.xcframework.zip",
-            checksum: "e0cf05cacacc66e8080f0ba06c56b119e884df31aa1f3735d2b59ff918f0abd1")
+            name: "arti-rest",
+            url: "https://github.com/c4dt/arti-rest/releases/download/0.0.3/arti-rest.xcframework.zip",
+            checksum: "d2b8b2c922981eaa19fdedddb851387806e55805b613c914dbcd4b3e4bf1d231")
     ]
 )
