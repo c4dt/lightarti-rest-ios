@@ -30,8 +30,8 @@ let package = Package(
        .binaryTarget(
            name: "arti-rest",
            // The following two comments are needed for the automatic update to work!
-           url: "https://github.com/c4dt/arti-rest/releases/download/0.0.3/arti-rest.xcframework.zip", // XCFramework URL
-           checksum: "1234"), // XCFramework checksum
+           url: "https://github.com/c4dt/arti-rest/releases/download/0.0.4/arti-rest.xcframework.zip" // XCFramework URL
+           checksum: "5766dec53c103ef80c0c0d68cff5d1acbf73e390a5c108e6089954b9d90a8f78" // XCFramework checksum
 // This is for local testing
 //         .binaryTarget(
 //             name: "arti-rest",
