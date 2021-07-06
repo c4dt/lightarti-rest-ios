@@ -27,12 +27,13 @@ let package = Package(
         .testTarget(
             name: "arti-iosTests",
             dependencies: ["arti-ios"]),
-//        .binaryTarget(
-//            name: "arti-rest",
-//            url: "https://github.com/c4dt/arti-rest/releases/download/0.0.3/arti-rest.xcframework.zip",
-//            checksum: "d2b8b2c922981eaa19fdedddb851387806e55805b613c914dbcd4b3e4bf1d231"),
-        .binaryTarget(
-            name: "arti-rest",
-            path: "./arti-rest.xcframework"), 
+       .binaryTarget(
+           name: "arti-rest",
+           url: "https://github.com/c4dt/arti-rest/releases/download/0.0.4/arti-rest.xcframework.zip",
+           checksum: "5766dec53c103ef80c0c0d68cff5d1acbf73e390a5c108e6089954b9d90a8f78"),
+// This is for local testing
+//         .binaryTarget(
+//             name: "arti-rest",
+//             path: "./arti-rest.xcframework"),
     ]
 )
