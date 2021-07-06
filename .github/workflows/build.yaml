@@ -1,0 +1,20 @@
+name: Build
+on:
+  push:
+    branches:
+      - build
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - id: xcframework
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          owner: c4dt
+          repo: arti-rest
+
+      - name: ls -R
+        run: ls -R
