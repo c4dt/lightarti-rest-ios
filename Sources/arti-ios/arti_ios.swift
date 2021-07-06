@@ -2,7 +2,7 @@ import arti_rest
 import Foundation
 
 public enum ArtiError: Error {
-    case internalError(str: String)
+    case internalError(str: String, context: String?)
 }
 
 public struct ReturnStruct {
@@ -20,11 +20,28 @@ struct ArtiRequest: Codable {
     let dict_dir: String
 }
 
+struct ArtiReturn: Codable {
+    let error: ArtiErr?
+    let response: ArtiResponse?
+}
+
 struct ArtiResponse: Codable {
-    let error: String
     let status: UInt16
     let headers: [String: [String]]
     let body: [UInt8]
+}
+
+struct ArtiErr: Codable {
+    let error_string: String
+    let error_context: String?
+}
+
+public enum ArtiMethods {
+    case GET
+    case POST
+    case PUT
+    case DELETE
+    case UPDATE
 }
 
 /**
@@ -33,24 +50,28 @@ struct ArtiResponse: Codable {
  * In case of an error in the arti library, an ArtiError is thrown.
  * REST errors are returned through the 'status' field of the ReturnStruct.
  */
-public func callArti(method: String, url: String) throws -> ReturnStruct {
+public func callArti(method: ArtiMethods, url: String,
+                     headers: [String: [String]] = [:],
+                     body: Data = Data([])) throws -> ReturnStruct {
     let resourcePath = Bundle.main.resourcePath!
-    let ar = ArtiRequest(method: method, url: url, headers: [:],
-                         body: [], dict_dir: resourcePath + "/directory");
+    let ar = ArtiRequest(method: "\(method)", url: url, headers: headers,
+                         body: [UInt8](body), dict_dir: resourcePath + "/directory");
     let ar_str = String(data: try JSONEncoder().encode(ar), encoding: .utf8);
-    let resp = call_arti(ar_str).takeRetainedValue() as NSString as String;
+    let ret_json = call_arti(ar_str).takeRetainedValue() as NSString as String;
 
-    let resp_data = resp.data(using: .utf8)!
-    let aresp: ArtiResponse = try JSONDecoder().decode(ArtiResponse.self, from: resp_data)
-    if aresp.error != "" {
-        throw ArtiError.internalError(str: aresp.error);
+    let ret_data = ret_json.data(using: .utf8)!
+    let ret: ArtiReturn = try JSONDecoder().decode(ArtiReturn.self, from: ret_data)
+    if let err = ret.error {
+        throw ArtiError.internalError(str: err.error_string, context: err.error_context);
     }
         
-    let ret = ReturnStruct(
-        status: aresp.status,
-        headers: aresp.headers,
-        body: Data(aresp.body)
-        )
-
-    return ret;
+    if let response = ret.response {
+        return ReturnStruct(
+            status: response.status,
+            headers: response.headers,
+            body: Data(response.body)
+            )
+    }
+    
+    throw ArtiError.internalError(str: "Neither error nor response", context: nil)
 }
