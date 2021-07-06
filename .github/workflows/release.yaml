@@ -23,7 +23,7 @@ jobs:
           export CHK=$( sha256sum arti-rest.xcframework.zip | sed -e 's/ .*//' )
           echo "Checksum is: $CHK"
           sed -i -e "s=\(\\s*url: \).* \(// XCFramework URL.*\)=\1\"$XCFRAMEWORK_URL\", \2=" Package.swift
-          sed -i -e "s=\(\\s*checksum: \).* \(// XCFramework checksum.*\)=\1\"$CHK\", \2=" Package.swift
+          sed -i -e "s=\(\\s*checksum: \).* \(// XCFramework checksum.*\)=\1\"$CHK\" \2=" Package.swift
           cat Package.swift
 
       - uses: EndBug/add-and-commit@v7
