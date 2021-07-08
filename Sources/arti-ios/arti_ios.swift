@@ -45,17 +45,29 @@ public enum ArtiMethods {
 }
 
 /**
- * Makes a synchronous call to the arti library to fetch the given url with the indicated method. The arti backend will
- * set up a new circuit over tor and send the request over this circuit.
- * In case of an error in the arti library, an ArtiError is thrown.
- * REST errors are returned through the 'status' field of the ReturnStruct.
+ Makes a synchronous call to the arti library to fetch the given url with the indicated method.
+ The arti backend will
+ set up a new circuit over tor and send the request over this circuit.
+ In case of an error in the arti library, an ArtiError is thrown.
+ REST errors are returned through the 'status' field of the ReturnStruct.
+
+ - Parameters:
+   - dict_dir:
+   - method: one of the ARtiMethods
+   - url: the destination of the request
+   - headers: of the request
+   - body: data to be sent along
+
+ - Returns: a ReturnStruct with the result
+
+ - Throws: `ArtiError` in case something within the arti-library produced an error
  */
-public func callArti(method: ArtiMethods, url: String,
+public func callArti(dict_dir: String,
+                     method: ArtiMethods, url: String,
                      headers: [String: [String]] = [:],
                      body: Data = Data([])) throws -> ReturnStruct {
-    let resourcePath = Bundle.main.resourcePath!
     let ar = ArtiRequest(method: "\(method)", url: url, headers: headers,
-                         body: [UInt8](body), dict_dir: resourcePath + "/directory");
+                         body: [UInt8](body), dict_dir: dict_dir);
     let ar_str = String(data: try JSONEncoder().encode(ar), encoding: .utf8);
     let ret_json = call_arti(ar_str).takeRetainedValue() as NSString as String;
 
