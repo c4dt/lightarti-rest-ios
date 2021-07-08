@@ -1,6 +1,6 @@
-# arti-ios
+# Arti-ios Swift Package
 
-iOS library for REST requests using arti.
+This Swift package is an iOS library for REST requests using arti.
 This uses the code from [arti-rest](https://github.com/c4dt/arti-rest).
 As such it is important to notice:
 
@@ -28,7 +28,9 @@ There is a daily tor-directory update here:
 
 # API
 
-The `arti-ios` library exposes one call:
+The `arti-ios` library exposes one call.
+There is an example at [arti-ios-test](https://github.com/c4dt/arti-ios-test/blob/main/arti-ios-test/BackgroundCall.swift) that shows how
+to use it.
 
 ```
 /**
