@@ -17,7 +17,7 @@ struct ArtiRequest: Codable {
     let url: String
     let headers: [String:[String]]
     let body: [UInt8]
-    let dict_dir: String
+    let cache_dir: String
 }
 
 struct ArtiReturn: Codable {
@@ -67,7 +67,7 @@ public func callArti(dict_dir: String,
                      headers: [String: [String]] = [:],
                      body: Data = Data([])) throws -> ReturnStruct {
     let ar = ArtiRequest(method: "\(method)", url: url, headers: headers,
-                         body: [UInt8](body), dict_dir: dict_dir);
+                         body: [UInt8](body), cache_dir: dict_dir);
     let ar_str = String(data: try JSONEncoder().encode(ar), encoding: .utf8);
     let ret_json = call_arti(ar_str).takeRetainedValue() as NSString as String;
 
