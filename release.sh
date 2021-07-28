@@ -23,19 +23,17 @@ get_next(){
 
 get_next_tag(){
   local RELEASE=$1
-  echo "$( get_next $( echo $RELEASE | jq -r '.tag_name') $( git tag | tail -n 1) )"
+  get_next $( echo $RELEASE | jq -r '.tag_name') $( git tag | tail -n 1)
 }
 
 # Get latest release of arti rest and update the Package.swift with the
 # hash and the url
 RELEASE=$( curl -sL https://api.github.com/repos/c4dt/arti-rest/releases/latest )
 XCFRAMEWORK_URL=$( echo $RELEASE | jq -r '.assets[].browser_download_url')
-TMP=$( mktemp )
-wget -q -O "$TMP" $XCFRAMEWORK_URL
-CHK=$( sha256sum "$TMP" | sed -e 's/ .*//' )
-rm -f "$TMP"
-sed -i "" "s=\(\\s*url: \).* \(// XCFramework URL.*\)=\1\"$XCFRAMEWORK_URL\", \2=" Package.swift
-sed -i "" "s=\(\\s*checksum: \).* \(// XCFramework checksum.*\)=\1\"$CHK\" \2=" Package.swift
+CHK=$(curl -s "$XCFRAMEWORK_URL" | sha256sum | cut -d' ' -f1)
+sed -i '' -e "s=\(\\s*url: \).* \(// XCFramework URL.*\)=\1\"$XCFRAMEWORK_URL\", \2=;
+       s=\(\\s*checksum: \).* \(// XCFramework checksum.*\)=\1\"$CHK\" \2=" \
+       Package.swift
 
 # Get the next tag
 NEWTAG=$( get_next_tag "$RELEASE" )
