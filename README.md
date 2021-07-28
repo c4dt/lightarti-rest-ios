@@ -56,3 +56,15 @@ public struct ReturnStruct {
 ```
 
 Any REST-request error returns successfully, but the `status` field will be set to an error-code.
+
+# Release a new version
+
+To release a new version, please use the provided `release.sh` script. 
+It takes no arguments and does the following:
+- updates `Package.swift` with the latest xcframework from arti-rest
+- calculates the appropriate new tag
+  - at least the same version as arti-rest
+  - else increase the patch or release
+- sets the tag
+
+You'll have to do the `git push --tags` on your own.
