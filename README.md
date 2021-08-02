@@ -11,7 +11,7 @@ This version comes with a mandatory cache of the Tor directory data.
 This means that the app itself will have to download this data and make
 it available in a directory to the library.
 
-For more information, see [Directory Cache](https://github.com/c4dt/arti-rest/blob/directory_scripts/tools/README.md)
+For more information, see [Directory Cache](https://github.com/c4dt/arti-rest/blob/main/tools/README.md)
 
 There is a daily tor-directory update here:
 [arti-directory](https://github.com/c4dt/arti-directory)
