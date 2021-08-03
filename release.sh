@@ -36,9 +36,9 @@ fi
 # hash and the url
 RELEASE=$( curl -sL https://api.github.com/repos/c4dt/arti-rest/releases/latest )
 XCFRAMEWORK_URL=$( echo "$RELEASE" | jq -r '.assets[].browser_download_url')
-echo URL is: $XCFRAMEWORK_URL
+echo "URL is: $XCFRAMEWORK_URL"
 CHK=$(curl -s -L "$XCFRAMEWORK_URL" | sha256sum | cut -d' ' -f1)
-echo Checksum is: $CHK
+echo "Checksum is: $CHK"
 sed -i '' -e "s=\(\\s*url: \).* \(// XCFramework URL.*\)=\1\"$XCFRAMEWORK_URL\", \2=;
        s=\(\\s*checksum: \).* \(// XCFramework checksum.*\)=\1\"$CHK\" \2=" \
        Package.swift
