@@ -68,3 +68,17 @@ It takes no arguments and does the following:
 - sets the tag
 
 You'll have to do the `git push --tags` on your own.
+
+# Contributors
+
+`lightarti-rest-ios` is maintained by the [Center for Digital Trust](https://c4dt.org/). The following people contributed to the implementation of `lightarti-rest`:
+
+* Linus Gasser, C4DT
+* Valérian Rousset, C4DT
+* Christian Grigris, C4DT
+* Laurent Girod, SPRING Lab, EPFL
+
+Analysis and design by:
+
+* Wouter Lueks, SPRING Lab, EPFL
+* Carmela Troncoso, SPRING Lab, EPFL
