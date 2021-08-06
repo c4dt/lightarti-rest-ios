@@ -25,7 +25,7 @@ let package = Package(
             name: "lightarti-rest-ios",
             dependencies: ["lightarti-rest"]),
         .testTarget(
-            name: "arti-iosTests",
+            name: "lightarti-rest-iosTests",
             dependencies: ["lightarti-rest-ios"]),
       .binaryTarget(
           name: "lightarti-rest",
@@ -34,6 +34,7 @@ let package = Package(
           checksum: "969c1160eeab10b15060062ef13f6b095481e7580fc6b478197f19a96cf312d7" // XCFramework checksum
 	   ),
 // This is for local testing
+
 //         .binaryTarget(
 //             name: "lightarti-rest",
 //             path: "./lightarti-rest.xcframework"),
