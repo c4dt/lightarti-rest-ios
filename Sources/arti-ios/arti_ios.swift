@@ -1,4 +1,4 @@
-import arti_rest
+import lightarti_rest
 import Foundation
 
 public enum ArtiError: Error {

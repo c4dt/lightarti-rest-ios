@@ -32,9 +32,9 @@ if [ -n "$( git status --porcelain )" ]; then
 	exit 1
 fi
 
-# Get latest release of arti rest and update the Package.swift with the
+# Get latest release of lightarti rest and update the Package.swift with the
 # hash and the url
-RELEASE=$( curl -sL https://api.github.com/repos/c4dt/arti-rest/releases/latest )
+RELEASE=$( curl -sL https://api.github.com/repos/c4dt/lightarti-rest/releases/latest )
 XCFRAMEWORK_URL=$( echo "$RELEASE" | jq -r '.assets[].browser_download_url')
 echo "URL is: $XCFRAMEWORK_URL"
 CHK=$(curl -s -L "$XCFRAMEWORK_URL" | sha256sum | cut -d' ' -f1)
