@@ -24,20 +24,20 @@ to use it.
 
 ```
 /**
- Makes a synchronous call to the arti library to fetch the given url with the indicated method. 
+ Makes a synchronous call to the arti library to fetch the given url with the indicated method.
  The arti backend will
  set up a new circuit over tor and send the request over this circuit.
  In case of an error in the arti library, an ArtiError is thrown.
  REST errors are returned through the 'status' field of the ReturnStruct.
- 
+
  - Parameters:
    - method: one of the ARtiMethods
    - url: the destination of the request
    - headers: of the request
    - body: data to be sent along
-   
+
  - Returns: a ReturnStruct with the result
- 
+
  - Throws: `ArtiError` in case something within the arti-library produced an error
  */
 public func callArti(method: ArtiMethods, url: String,
@@ -59,8 +59,9 @@ Any REST-request error returns successfully, but the `status` field will be set 
 
 # Release a new version
 
-To release a new version, please use the provided `release.sh` script. 
+To release a new version, please use the provided `release.sh` script.
 It takes no arguments and does the following:
+
 - updates `Package.swift` with the latest xcframework from arti-rest
 - calculates the appropriate new tag
   - at least the same version as arti-rest
@@ -73,12 +74,12 @@ You'll have to do the `git push --tags` on your own.
 
 `lightarti-rest-ios` is maintained by the [Center for Digital Trust](https://c4dt.org/). The following people contributed to the implementation of `lightarti-rest`:
 
-* Linus Gasser, C4DT
-* Valérian Rousset, C4DT
-* Christian Grigris, C4DT
-* Laurent Girod, SPRING Lab, EPFL
+- Linus Gasser, C4DT
+- Valérian Rousset, C4DT
+- Christian Grigis, C4DT
+- Laurent Girod, SPRING Lab, EPFL
 
 Analysis and design by:
 
-* Wouter Lueks, SPRING Lab, EPFL
-* Carmela Troncoso, SPRING Lab, EPFL
+- Wouter Lueks, SPRING Lab, EPFL
+- Carmela Troncoso, SPRING Lab, EPFL
