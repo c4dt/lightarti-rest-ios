@@ -1,9 +1,9 @@
-# Arti-ios Swift Package
+# Lightarti-rest-ios Swift Package
 
 This Swift package is an iOS library for REST requests using arti.
-This uses the code from [arti-rest](https://github.com/c4dt/arti-rest).
+This uses the code from [lightarti-rest](https://github.com/c4dt/lightarti-rest).
 
-> :warning: **Warning: arti-ios is not secure in all situations** Arti-android builds on top of [arti-rest]((https://github.com/c4dt/arti-rest), which modifies several core parts of `arti`. It therefore does not have the same security guarantees as arti or the stock Tor client would. Before integrating this library check the reliability considerations in the [arti-rest]((https://github.com/c4dt/arti-rest) repository to make sure that the security offered by this library is sufficient for your use case. In case of doubt, contact us in this repo. We'll be happy to discuss enhancements and limitations of our solution.
+> :warning: **Warning: lightarti-rest-ios is not secure in all situations** Arti-android builds on top of [lightarti-rest]((https://github.com/c4dt/lightarti-rest), which modifies several core parts of `arti`. It therefore does not have the same security guarantees as arti or the stock Tor client would. Before integrating this library check the reliability considerations in the [lightarti-rest]((https://github.com/c4dt/lightarti-rest) repository to make sure that the security offered by this library is sufficient for your use case. In case of doubt, contact us in this repo. We'll be happy to discuss enhancements and limitations of our solution.
 
 ## Directory cache
 
@@ -11,15 +11,15 @@ This version comes with a mandatory cache of the Tor directory data.
 This means that the app itself will have to download this data and make
 it available in a directory to the library.
 
-For more information, see [Directory Cache](https://github.com/c4dt/arti-rest/blob/main/tools/README.md)
+For more information, see [Directory Cache](https://github.com/c4dt/lightarti-rest/blob/main/tools/README.md)
 
 There is a daily tor-directory update here:
-[arti-directory](https://github.com/c4dt/arti-directory)
+[lightarti-directory](https://github.com/c4dt/lightarti-directory)
 
 # API
 
-The `arti-ios` library exposes one call.
-There is an example at [arti-ios-test](https://github.com/c4dt/arti-ios-test/blob/main/arti-ios-test/BackgroundCall.swift) that shows how
+The `lightarti-rest-ios` library exposes one call.
+There is an example at [lightarti-rest-ios-test](https://github.com/c4dt/lightarti-rest-ios-test/blob/main/lightarti-rest-ios-test/BackgroundCall.swift) that shows how
 to use it.
 
 ```
@@ -62,9 +62,9 @@ Any REST-request error returns successfully, but the `status` field will be set 
 To release a new version, please use the provided `release.sh` script.
 It takes no arguments and does the following:
 
-- updates `Package.swift` with the latest xcframework from arti-rest
+- updates `Package.swift` with the latest xcframework from lightarti-rest
 - calculates the appropriate new tag
-  - at least the same version as arti-rest
+  - at least the same version as lightarti-rest
   - else increase the patch or release
 - sets the tag
 
