@@ -10,9 +10,6 @@ let package = Package(
         .library(
             name: "lightarti-rest-ios",
             targets: ["lightarti-rest-ios"]),
-        .library(
-            name: "lightarti-rest",
-            targets: ["lightarti-rest"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
