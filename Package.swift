@@ -24,9 +24,6 @@ let package = Package(
         .target(
             name: "lightarti-rest-ios",
             dependencies: ["lightarti-rest"]),
-        .testTarget(
-            name: "lightarti-rest-iosTests",
-            dependencies: ["lightarti-rest-ios"]),
       .binaryTarget(
           name: "lightarti-rest",
           // The following two comments are needed for the automatic update to work!
