@@ -4,6 +4,6 @@
 /*.xcodeproj
 xcuserdata/
 DerivedData/
-.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+/.swiftpm/
 lightarti-rest.xcframework
 semver
