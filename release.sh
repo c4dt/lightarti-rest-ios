@@ -39,9 +39,9 @@ XCFRAMEWORK_URL=$( echo "$RELEASE" | jq -r '.assets[].browser_download_url')
 echo "URL is: $XCFRAMEWORK_URL"
 CHK=$(curl -s -L "$XCFRAMEWORK_URL" | sha256sum | cut -d' ' -f1)
 echo "Checksum is: $CHK"
-sed -i '' -e "s=\(\\s*url: \).* \(// XCFramework URL.*\)=\1\"$XCFRAMEWORK_URL\", \2=;
+sed -e "s=\(\\s*url: \).* \(// XCFramework URL.*\)=\1\"$XCFRAMEWORK_URL\", \2=;
        s=\(\\s*checksum: \).* \(// XCFramework checksum.*\)=\1\"$CHK\" \2=" \
-       Package.swift
+       Package.swift > tmpfile && mv tmpfile Package.swift
 
 # Get the next tag
 NEWTAG=$( get_next_tag "$RELEASE" )
