@@ -39,14 +39,20 @@ XCFRAMEWORK_URL=$( echo "$RELEASE" | jq -r '.assets[].browser_download_url')
 echo "URL is: $XCFRAMEWORK_URL"
 CHK=$(curl -s -L "$XCFRAMEWORK_URL" | sha256sum | cut -d' ' -f1)
 echo "Checksum is: $CHK"
-sed -e "s=\(\\s*url: \).* \(// XCFramework URL.*\)=\1\"$XCFRAMEWORK_URL\", \2=;
-       s=\(\\s*checksum: \).* \(// XCFramework checksum.*\)=\1\"$CHK\" \2=" \
-       Package.swift > tmpfile && mv tmpfile Package.swift
 
 # Get the next tag
 NEWTAG=$( get_next_tag "$RELEASE" )
-git commit -qam "Tagging $NEWTAG"
 echo "Tagging release with: $NEWTAG"
-git tag "$NEWTAG"
-echo "Please check everything is OK and then use"
-echo "git push --atomic origin main $NEWTAG"
+
+if [ "$1" = release ]; then
+  sed -e "s=\(\\s*url: \).* \(// XCFramework URL.*\)=\1\"$XCFRAMEWORK_URL\", \2=;
+       s=\(\\s*checksum: \).* \(// XCFramework checksum.*\)=\1\"$CHK\" \2=" \
+       Package.swift > tmpfile && mv tmpfile Package.swift
+  git commit -qam "Tagging $NEWTAG"
+  git tag "$NEWTAG"
+  echo "Please check everything is OK and then use"
+  echo "git push --atomic origin main $NEWTAG"
+else
+  echo "Run release.sh with 'release' to commit changes"
+fi
+
