@@ -23,7 +23,9 @@ get_next(){
 
 get_next_tag(){
   local RELEASE=$1
-  get_next "$( echo "$RELEASE" | jq -r '.tag_name')" "$( git tag | tail -n 1)"
+  local TAG
+  TAG=$( git tag | tail -n 1 )
+  get_next "$( echo "$RELEASE" | jq -r '.tag_name' )" "${TAG:-0.1.0}"
 }
 
 # Check if the repo is committed
@@ -37,7 +39,7 @@ fi
 RELEASE=$( curl -sL https://api.github.com/repos/c4dt/lightarti-rest/releases/latest )
 XCFRAMEWORK_URL=$( echo "$RELEASE" | jq -r '.assets[].browser_download_url')
 echo "URL is: $XCFRAMEWORK_URL"
-CHK=$(curl -s -L "$XCFRAMEWORK_URL" | sha256sum | cut -d' ' -f1)
+CHK=$(curl -s -L "$XCFRAMEWORK_URL" | shasum -a 256 | cut -d' ' -f1)
 echo "Checksum is: $CHK"
 
 # Get the next tag
