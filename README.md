@@ -68,7 +68,15 @@ It takes no arguments and does the following:
   - else increase the patch or release
 - sets the tag
 
-You'll have to do the `git push --tags` on your own.
+If run without arguments, it tests all the steps, without committing anything.
+Only if you run it like
+
+```bash
+./release.sh release
+```
+
+will it add the tag to the repo.
+You'll have to do the `git push --atomic origin main $NEWTAG` on your own.
 
 # Contributors
 
