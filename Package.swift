@@ -24,8 +24,8 @@ let package = Package(
       .binaryTarget(
           name: "lightarti-rest",
           // The following two comments are needed for the automatic update to work!
-          url: "https://github.com/c4dt/lightarti-rest/releases/download/0.4.6/lightarti-rest.xcframework.zip", // XCFramework URL
-          checksum: "2f75a108b7ba09360d53cb86f0251ca0197693e8ce3fcb08d61a2e780721ec0e" // XCFramework checksum
+          url: "https://github.com/c4dt/lightarti-rest/releases/download/0.4.9/lightarti-rest.xcframework.zip", // XCFramework URL
+          checksum: "42d2ce6b80289824afbf870ed15e4bcb76720fa8be87ef6c704d1320f28063d0" // XCFramework checksum
 	   ),
 // This is for local testing
 
