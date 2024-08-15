@@ -1,4 +1,11 @@
-# Lightarti-rest-ios Swift Package
+# Lightarti-rest-ios Swift Package - ARCHIVED
+
+This project has been archived by the [C4DT](https://c4dt.epfl.ch) Factory team.
+It is kept here for reference and for old URLs.
+You can find more information in our [showcase](https://factory.c4dt.org/showcase/lightarti/presentation)
+and find our contact information.
+
+## Description
 
 This Swift package is an iOS library for REST requests using arti.
 This uses the code from [lightarti-rest](https://github.com/c4dt/lightarti-rest).
